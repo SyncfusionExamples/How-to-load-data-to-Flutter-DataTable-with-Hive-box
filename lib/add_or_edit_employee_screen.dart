@@ -37,10 +37,11 @@ class EmployeeListScreen extends StatelessWidget {
         children: [
           Container(
               width: 100,
-              padding: EdgeInsets.symmetric(vertical: 15),
+              padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
               child: Text(columnName)),
           Container(
             width: 120,
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
             child: TextFormField(
               initialValue: value,
               validator: (value) {
@@ -222,7 +223,7 @@ class EmployeeListScreen extends StatelessWidget {
                     updateDataGrid();
                     Navigator.pop(context);
                   },
-                  child: Text('delete')),
+                  child: Text('Delete')),
               TextButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -296,6 +297,7 @@ class EmployeeDataSource extends DataGridSource {
   List<DataGridRow> _employeeDataGridRow = [];
 
   void initialLoading() {
+    employeeDatabase.loadEmployeeData();
     employeeData = employeeDatabase.getEmployeesList();
     buildDataGridRows();
   }

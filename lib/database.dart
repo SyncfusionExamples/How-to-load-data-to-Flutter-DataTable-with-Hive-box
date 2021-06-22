@@ -22,6 +22,20 @@ class EmployeeDatabase extends GetxController {
     return box;
   }
 
+  void loadEmployeeData() async {
+    var box = await Hive.openBox<Employee>(boxName);
+    box.put(0, Employee(10001, 'Lara', 'Manager', 30000));
+    box.put(1, Employee(10002, 'Kathryn', 'Manager', 30000));
+    box.put(2, Employee(10003, 'Lara', 'Developer', 15000));
+    box.put(3, Employee(10004, 'Michael', 'Designer', 15000));
+    box.put(4, Employee(10005, 'Martin', 'Developer', 15000));
+    box.put(5, Employee(10006, 'Newberry', 'Developer', 15000));
+    box.put(6, Employee(10007, 'Balnc', 'Developer', 15000));
+    box.put(7, Employee(10008, 'Perry', 'Developer', 15000));
+    box.put(8, Employee(10009, 'Gable', 'Developer', 15000));
+    box.put(9, Employee(10010, 'Grimes', 'Developer', 15000));
+  }
+
   void addEmployee(Employee newEmployee) async {
     var box = await Hive.openBox<Employee>(boxName);
     await box.add(newEmployee);
@@ -32,18 +46,7 @@ class EmployeeDatabase extends GetxController {
   void getEmployees() async {
     var box = await Hive.openBox<Employee>(boxName);
     employeeList = box.values.toList();
-    if (employeeList.isEmpty) {
-      box.add(Employee(10001, 'James', 'Project Lead', 20000));
-      box.add(Employee(10002, 'Kathryn', 'Manager', 30000));
-      box.add(Employee(10003, 'Lara', 'Developer', 15000));
-      box.add(Employee(10004, 'Michael', 'Designer', 15000));
-      box.add(Employee(10005, 'Martin', 'Developer', 15000));
-      box.add(Employee(10006, 'Newberry', 'Developer', 15000));
-      box.add(Employee(10007, 'Balnc', 'Developer', 15000));
-      box.add(Employee(10008, 'Perry', 'Developer', 15000));
-      box.add(Employee(10009, 'Gable', 'Developer', 15000));
-      box.add(Employee(10010, 'Grimes', 'Developer', 15000));
-    }
+   
     refresh();
   }
 
